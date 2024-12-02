@@ -1,0 +1,10 @@
+<nav class="navbar navbar-light">
+    <div class="container-fluid">
+      <h1 class="navbar-brand" style="color: #6181AA;">Weather Forecast</h1>
+      <div class="d-flex input-group w-auto">
+        <input type="text" type="search" class="form-control rounded" placeholder="Search for a city" aria-label="Search"
+             [(ngModel)]="searchQuery" (keyup.enter)="handleSearch()"/>
+        <button (click)="handleSearch()"><i class="fa fa-search"></i></button>
+      </div>
+    </div>
+  </nav>

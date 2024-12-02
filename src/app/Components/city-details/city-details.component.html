@@ -1,0 +1,21 @@
+  <div *ngIf="city">
+    <h1 class="card-title">Weather Details for {{ city.city }} : </h1>
+    <div class="containerb">
+      <button (click)="toggleTemperatureUnit()"> Display with {{ displayUnit === 'C' ? 'Fahrenheit' : 'Celsius' }}</button>
+      <button (click)="NavigateToCountries()"> Return To All Countries</button>
+    </div>
+    
+  <div class="container">  
+  <div class="cardDesign" *ngFor="let day of city.forecast">
+    <div class="card">
+      <div class="card-body">
+        <p class="card-text">{{ day.date }}</p> 
+        <p>Temperature:
+          {{ displayUnit === 'C' ? day.temperatureCelsius : day.temperatureFahrenheit }}
+          °{{ displayUnit }}</p>
+        <p>Humidity: {{ day.humidity }}%</p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

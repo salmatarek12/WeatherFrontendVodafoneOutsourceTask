@@ -1,0 +1,49 @@
+  <div class="container">
+  <div class="artboard" *ngFor="let city of cities">
+    <div class="card">
+   
+     <div class="card__side card__side--back">
+      <div class="card__cover">
+       <h2 class="card__heading">
+        <span class="card__heading-span">{{ city.city }}</span>
+       </h2>
+      </div>
+      <div class="card__details">
+        <label for="datePicker-{{ city.id }}">Choose a date:</label>
+        <input id="datePicker-{{ city.id }}" type="date" [max]="getMaxDate(city)" [min]="getMinDate(city)" 
+               class="form-control form-control-color" style="height: 40px!important;width: 70% !important;"
+               (change)="handleDateChange($event, city.id)" [value]="selectedDates[city.id]"/>
+        <div *ngIf="selectedForecasts[city.id]; else noForecast">
+          <p>Date: {{ selectedForecasts[city.id]?.date }}</p>
+          <p>Temperature: 
+            {{
+              cityUnits[city.id] === 'C'
+                ? selectedForecasts[city.id]?.temperatureCelsius
+                : selectedForecasts[city.id]?.temperatureFahrenheit
+            }}°{{ cityUnits[city.id] }}</p>
+          <p>Humidity: {{ selectedForecasts[city.id]?.humidity }}</p>  
+          <button style="background-color: #7C97BB;" (click)="toggleUnit(city.id)">
+            Change Temperature Unit ({{ cityUnits[city.id] }})
+          </button>
+        </div>
+        <ng-template #noForecast>
+          <div>
+            <p style="background-color: yellow;">No forecast available for the selected date.</p>
+          </div>
+        </ng-template>
+      </div>
+     </div>
+   
+     <div class="card__side card__side--front">
+      <div class="card__theme">
+       <div class="card__theme-box">
+        <h1 class="card__subject">{{ city.city }}</h1>
+       </div>
+      </div>
+     </div>
+   
+    </div>
+   </div>
+
+  </div>
+  
